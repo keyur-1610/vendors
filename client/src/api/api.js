@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://vendors-0uvu.onrender.com/api",
 });
 
 // Automatically attach token to requests if available
