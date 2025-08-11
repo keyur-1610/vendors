@@ -1,6 +1,6 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS streetconnect;
-USE streetconnect;
+CREATE DATABASE IF NOT EXISTS sql12794617;
+USE sql12794617;
 
 -- Users table (for vendors, suppliers, admin)
 CREATE TABLE IF NOT EXISTS users (

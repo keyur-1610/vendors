@@ -15,6 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", { email, password });
+      console.log("Login response:", res);
       const { token, user } = res.data;
 
       if (user.role !== role) {
