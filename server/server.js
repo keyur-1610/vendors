@@ -15,6 +15,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/",(req,res)=>{
+    res.send("Welcome to the Vendor Management API");
+})
+
 app.use("/api/auth", authRoutes);
 app.use("/api/vendor", vendorRoutes);
 app.use("/api/supplier", supplierRoutes);
