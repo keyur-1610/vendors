@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Classic global CSS styles */
+body {
+  background-color: #f9fafb;  /* same as bg-gray-50 */
+  color: #1f2937;              /* same as text-gray-800 */
+  margin: 0;
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600; /* same as font-semibold */
+}
+
+input, button, select, textarea {
+  outline: none;
+}
+
+button:disabled {
+  background-color: #d1d5db; /* same as bg-gray-300 */
+  cursor: not-allowed;
+}
+.chat-box {
+  background: white;
+  width: 300px;
+  height: 400px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  padding: 10px;
+}
