@@ -11,12 +11,21 @@ const AddProduct = () => {
     status: "in_stock",
   });
 
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+
   const suggestedCategories = ["Fruits", "Vegetables", "Dairy", "Bakery", "Grains"];
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
   };
 
   const handleCategoryClick = (cat) => {
@@ -26,8 +35,13 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // For demonstration — adapt to your API's image handling
+    const formData = new FormData();
+    Object.entries(form).forEach(([key, value]) => formData.append(key, value));
+    if (image) formData.append("image", image);
+
     try {
-      await api.post("/supplier/materials", form);
+      await api.post("/supplier/materials", formData);
       alert("✅ Product added!");
       navigate("/supplier/products");
     } catch (error) {
@@ -44,6 +58,31 @@ const AddProduct = () => {
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Image Upload */}
+          <div>
+            <label className="block text-sm font-semibold text-[#4D7111] mb-2">
+              Product Image
+            </label>
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-32 h-32 object-cover rounded-md mb-3 border border-[#91EAAF]"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="block w-full text-sm text-gray-600
+                         file:mr-4 file:py-2 file:px-4
+                         file:rounded-full file:border-0
+                         file:text-sm file:font-semibold
+                         file:bg-[#91EAAF] file:text-white
+                         hover:file:bg-[#1F4B2C]"
+            />
+          </div>
+
           {/* Input Fields */}
           {["name", "quantity", "price_per_unit"].map((field) => (
             <div key={field}>
